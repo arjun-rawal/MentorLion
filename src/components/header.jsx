@@ -173,13 +173,13 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           
-          <Button variant="text" disableElevation>
+          <Button disableRipple variant="text" disableElevation>
 
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block', fontFamily: 'Poppins', color:"white" } }}
+            sx={{ display: { xs: 'none', sm: 'block', fontFamily: 'Poppins', color:"white", textTransform:'none' } }}
           >
             MentorLion
           </Typography>
