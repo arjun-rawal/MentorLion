@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to bottom , #b93b0a, #fe9999);
+    background: linear-gradient(to bottom, #b93b0a, #fe9999);
   }
   
   .auth-card {
@@ -46,6 +46,11 @@
     margin-bottom: 1rem;
   }
   
+  .auth-message {
+    color: green;
+    margin-bottom: 1rem;
+  }
+  
   .auth-button {
     background: #b93b0a;
     color: white;
@@ -59,14 +64,6 @@
   
   .auth-button:hover {
     background: #a8320a;
-  }
-  
-  .google-oauth {
-    background: #4285F4;
-  }
-  
-  .google-oauth:hover {
-    background: #357ae8;
   }
   
   .auth-links {

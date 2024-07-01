@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './AuthPage.css';
 import logo from '../assets/TLfill.png'
 
-const AuthPage = () => {
-  const navigate = useNavigate();
+const CreateAccountPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,11 +17,20 @@ const AuthPage = () => {
     setPassword(e.target.value);
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('http://localhost:5000/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,8 +41,7 @@ const AuthPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('token', data.token);
-        navigate('/dashboard');
+        setMessage('Account created successfully. You can now log in.');
       } else {
         throw new Error(data.message);
       }
@@ -45,9 +53,9 @@ const AuthPage = () => {
   return (
     <div className="auth-container">
       <div className="auth-card">
-      <h1 style={{fontFamily:'poppins'}}> MentorLion</h1>
+        <h1 style={{fontFamily:'poppins'}}> MentorLion</h1>
       <img style={{borderRadius:20}}src={logo} alt="MentorLion" className="auth-logo" />
-        <h2>Log in <span role="img" aria-label="wave">👋</span></h2>
+        <h2>Create Account</h2>
         <form onSubmit={handleSubmit}>
           <div className="auth-input">
             <label>Email *</label>
@@ -67,18 +75,25 @@ const AuthPage = () => {
               required
             />
           </div>
+          <div className="auth-input">
+            <label>Confirm Password *</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+              required
+            />
+          </div>
           {error && <p className="auth-error">{error}</p>}
-          <button type="submit" className="auth-button">Log In</button>
+          {message && <p className="auth-message">{message}</p>}
+          <button type="submit" className="auth-button">Create Account</button>
         </form>
         <div className="auth-links">
-          <a href="/forgot-password">Forgot password?</a>
-          <hr className="auth-divider" />
-          <button className="auth-button google-oauth">Log in with Google</button>
-          <p>New to MentorLion? <a href="/signup">Create Free Account</a></p>
+          <a href="/login">Back to Login</a>
         </div>
       </div>
     </div>
   );
 };
 
-export default AuthPage;
+export default CreateAccountPage;
