@@ -6,13 +6,14 @@ import Drawer from './components/drawer';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
 
   return (
+    //TODO: add routing for different pages
     <Box sx={{ display: 'flex' }}>
       <Header open={open} handleDrawerToggle={handleDrawerToggle} />
       <Drawer open={open} handleDrawerToggle={handleDrawerToggle} />
