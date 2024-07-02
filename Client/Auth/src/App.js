@@ -6,8 +6,10 @@ import AuthPage from './pages/AuthPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import CreateAccountPage from './pages/CreateAccountPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import Footer from './components/footer';
 const App = () => {
   return (
+    <>
     <Router>
       <Routes>
         <Route path="/login" element={<AuthPage />} />
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/" element={<AuthPage />} /> {/* Default route */}
       </Routes>
     </Router>
+    <Footer/>
+    </>
   );
 };
 
